@@ -1,0 +1,213 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://Scene/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scene/ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprite/animation/pidle-2f3.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/animation/pidle-2f1.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/animation/pidle-2f2.png" type="Texture" id=5]
+[ext_resource path="res://Sprite/animation/pidle-1f1.png" type="Texture" id=6]
+[ext_resource path="res://Sprite/animation/pidle-1f3.png" type="Texture" id=7]
+[ext_resource path="res://Sprite/animation/pidle-1f2.png" type="Texture" id=8]
+[ext_resource path="res://Scene/player1.gd" type="Script" id=9]
+[ext_resource path="res://Sprite/animation/run/run-2f1.png" type="Texture" id=10]
+[ext_resource path="res://Sprite/animation/run/run-2f4.png" type="Texture" id=11]
+[ext_resource path="res://Sprite/animation/run/run-2f2.png" type="Texture" id=12]
+[ext_resource path="res://Sprite/animation/run/run-2f3.png" type="Texture" id=13]
+[ext_resource path="res://Sprite/animation/head/head-2f2.png" type="Texture" id=14]
+[ext_resource path="res://Sprite/animation/head/head-2f1.png" type="Texture" id=15]
+[ext_resource path="res://Scene/player2.gd" type="Script" id=16]
+[ext_resource path="res://Sprite/animation/run/run-1f4.png" type="Texture" id=17]
+[ext_resource path="res://Sprite/animation/run/run-1f1.png" type="Texture" id=18]
+[ext_resource path="res://Sprite/animation/run/run-1f2.png" type="Texture" id=19]
+[ext_resource path="res://Sprite/animation/run/run-1f3.png" type="Texture" id=20]
+[ext_resource path="res://Sprite/animation/head/head-1f1.png" type="Texture" id=21]
+[ext_resource path="res://Sprite/animation/head/head-1f2.png" type="Texture" id=22]
+[ext_resource path="res://Sprite/half.png" type="Texture" id=23]
+[ext_resource path="res://Sprite/bg.png" type="Texture" id=24]
+[ext_resource path="res://Sprite/grass.png" type="Texture" id=25]
+[ext_resource path="res://Sprite/sand.png" type="Texture" id=26]
+[ext_resource path="res://Scene/scpre1.gd" type="Script" id=27]
+[ext_resource path="res://Scene/score2.gd" type="Script" id=28]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 89.8619
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "head",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 82.5837
+height = 32.6792
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "head",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 253.416, 40.7693 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 255.849, 46.4648 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 14.7912, 254.572 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 674.781, 10 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 47.9837, 613.925 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+scene1 = ExtResource( 2 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 497.847, 285.369 )
+scale = Vector2( 0.631972, 0.699161 )
+texture = ExtResource( 24 )
+
+[node name="player1" type="KinematicBody2D" parent="."]
+position = Vector2( 812.838, 442.068 )
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
+position = Vector2( -1.948, 1.948 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="player1"]
+scale = Vector2( 1.60143, 1.75179 )
+frames = SubResource( 2 )
+animation = "run"
+
+[node name="player2" type="KinematicBody2D" parent="."]
+position = Vector2( 216.23, 446.096 )
+script = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="player2"]
+scale = Vector2( 1.72077, 1.64934 )
+frames = SubResource( 4 )
+animation = "head"
+
+[node name="g1" type="Area2D" parent="."]
+position = Vector2( 815.583, 542.769 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="g1"]
+position = Vector2( -28, 6 )
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="g1"]
+position = Vector2( -35.6659, 48.6531 )
+scale = Vector2( 3.93174, 2.40471 )
+texture = ExtResource( 25 )
+
+[node name="g2" type="Area2D" parent="."]
+position = Vector2( 246.132, 555.185 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="g2"]
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="g2"]
+position = Vector2( 2.70822, 37.5277 )
+scale = Vector2( 4.03015, 2.42784 )
+texture = ExtResource( 26 )
+
+[node name="half" type="StaticBody2D" parent="."]
+position = Vector2( 518.797, 488.664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="half"]
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="half"]
+position = Vector2( -0.431946, 6.43167 )
+scale = Vector2( 0.369932, 1 )
+texture = ExtResource( 23 )
+
+[node name="grand" type="StaticBody2D" parent="."]
+position = Vector2( 501.797, 524.445 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grand"]
+position = Vector2( 1.948, 3.89606 )
+shape = SubResource( 8 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -31.9772, 261.882 )
+rotation = -3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 32.8608, -0.00012207 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 1015.32, 261.882 )
+rotation = -3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -78.176, 9.25327 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 542.02, -17.5644 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( -24.2081, -4.88494 )
+shape = SubResource( 9 )
+
+[node name="score1" type="Label" parent="."]
+margin_left = 849.173
+margin_top = 19.48
+margin_right = 999.173
+margin_bottom = 79.48
+custom_colors/font_color = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+align = 2
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score2" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 7.0
+margin_right = 189.0
+margin_bottom = 69.0
+custom_colors/font_color = Color( 0.0235294, 0.0196078, 0.0196078, 1 )
+text = ":"
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="g1" to="score2" method="_on_g1_body_entered"]
+[connection signal="body_entered" from="g2" to="score1" method="_on_g2_body_entered"]
